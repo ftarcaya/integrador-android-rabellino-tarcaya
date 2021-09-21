@@ -40,7 +40,7 @@
             app:srcCompat="@drawable/ic_baseline_shuffle_24" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ListView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lv_activities"
         android:layout_margin="16dp"
         android:layout_width="match_parent"
