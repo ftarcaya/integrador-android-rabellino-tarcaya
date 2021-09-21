@@ -1,5 +1,6 @@
 package com.example.notbored
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,9 +16,8 @@ class ActivityAdapter(private val activities : List<String>/*, private val onIte
 
     override fun onBindViewHolder(holder: ActivityViewHolder, position: Int) {
         val activityInPosition = activities[position]
-        holder.bind(activityInPosition) {
 
-        }
+        holder.bind(activityInPosition)
     }
 
     override fun getItemCount(): Int {
