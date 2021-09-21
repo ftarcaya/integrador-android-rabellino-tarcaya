@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.btStart.setOnClickListener {
             val intent = Intent(this,ActivitiesActivity::class.java)
-            intent.putExtra("participants", binding.etParticipants.text)
+            intent.putExtra("PARTICIPANTS", binding.etParticipants.text)
             startActivity(intent)
         }
 

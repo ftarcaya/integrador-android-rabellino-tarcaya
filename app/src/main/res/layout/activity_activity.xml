@@ -16,7 +16,6 @@
         android:orientation="horizontal">
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_activity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -44,6 +43,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_activity"
         android:layout_width="wrap_content"
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
@@ -114,8 +114,10 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/tr_category"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:visibility="gone"
             android:layout_marginTop="16dp">
 
             <TextView
@@ -125,7 +127,7 @@
                 android:layout_weight="1"
                 android:text="@string/categoria"
                 android:drawablePadding="16dp"
-                app:drawableLeftCompat="@drawable/ic_baseline_attach_money_24" />
+                app:drawableLeftCompat="@drawable/ic_baseline_format_list_bulleted_24" />
         </TableRow>
     </TableLayout>
     </androidx.cardview.widget.CardView>
