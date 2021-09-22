@@ -13,10 +13,11 @@ import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class ActivityActivity : AppCompatActivity() {
+class SummaryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityActivityBinding
     private lateinit var category : String
     private lateinit var participants : String
+    private lateinit var price : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +27,7 @@ class ActivityActivity : AppCompatActivity() {
 
         category = intent.extras?.get("ACTIVITY").toString()
         participants = intent.extras?.get("PARTICIPANTS").toString()
-        binding.tvParticipantsCell2.text = participants
+        price = intent.extras?.get("PRICE").toString()
 
         checkCategory()
 
@@ -49,7 +50,7 @@ class ActivityActivity : AppCompatActivity() {
 
         CoroutineScope(Dispatchers.IO).launch {
             val call = getRetroFit().create(APIService::class.java).getActivityByCategory(
-                if(category == "RANDOM") "activity/" else "activity?type=${category.lowercase()}"
+                getUrlForRequest()
             )
 
             val activity : ActivityResponse? = call.body()
@@ -74,6 +75,23 @@ class ActivityActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun getUrlForRequest(): String {
+        var request = "activity"
+        var isNested = false
+        if(category == "RANDOM" && participants.isEmpty() && price.isEmpty()){
+            request = "$request/"
+        } else {
+            request = "$request?"
+            //minaccessibility=:minaccessibility&maxaccessibility=:maxaccessibility
+            if(participants.isNotEmpty() && price.isNotEmpty()){
+                request = "participants=$participants&price=$price"
+            }else if(participants.isEmpty()){
+                request = "price=$price"
+            }
+        }
+        return request
     }
 
     private fun getRetroFit(): Retrofit {

@@ -9,12 +9,13 @@ class ActivityViewHolder(view : View) : RecyclerView.ViewHolder(view) {
 
     private val binding = ItemListBinding.bind(view)
 
-    fun bind(activityInPosition: String, participants : String) {
+    fun bind(activityInPosition: String, participants : String, price : String) {
         binding.tvActivityName.text = activityInPosition
         binding.itemView.setOnClickListener {
-            val intent = Intent(it.context, ActivityActivity::class.java)
+            val intent = Intent(it.context, SummaryActivity::class.java)
             intent.putExtra("ACTIVITY",activityInPosition)
             intent.putExtra("PARTICIPANTS",participants)
+            intent.putExtra("PRICE",price)
             it.context.startActivity(intent)
         }
     }
