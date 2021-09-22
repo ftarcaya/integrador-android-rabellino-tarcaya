@@ -5,10 +5,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.notbored.databinding.ActivityActivitiesBinding
+import com.example.notbored.databinding.ActivitySelectorActivitiesBinding
 
 class ActivitiesSelectorActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityActivitiesBinding
+    private lateinit var binding: ActivitySelectorActivitiesBinding
     private lateinit var participants : String
     private lateinit var price : String
 
@@ -26,7 +26,7 @@ class ActivitiesSelectorActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityActivitiesBinding.inflate(layoutInflater)
+        binding = ActivitySelectorActivitiesBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
 

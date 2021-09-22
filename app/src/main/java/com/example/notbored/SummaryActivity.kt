@@ -5,8 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import com.example.notbored.databinding.ActivityActivityBinding
-import com.example.notbored.databinding.ActivityMainBinding
+import com.example.notbored.databinding.ActivitySummaryBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -14,14 +13,14 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class SummaryActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityActivityBinding
+    private lateinit var binding: ActivitySummaryBinding
     private lateinit var category : String
     private lateinit var participants : String
     private lateinit var price : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityActivityBinding.inflate(layoutInflater)
+        binding = ActivitySummaryBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
 
@@ -47,6 +46,11 @@ class SummaryActivity : AppCompatActivity() {
     }
 
     private fun searchActivityByCategory() {
+
+        binding.btTryAnother.isEnabled = false
+        binding.tlActivityTable.visibility = View.GONE
+        binding.pbLoading.visibility = View.VISIBLE
+        binding.tvActivity.text = "Loading..."
 
         CoroutineScope(Dispatchers.IO).launch {
             val call = getRetroFit().create(APIService::class.java).getActivityByCategory(
@@ -82,6 +86,10 @@ class SummaryActivity : AppCompatActivity() {
                         }
 
                         binding.tvCategory.text = activity?.category?.capitalize()
+
+                        binding.btTryAnother.isEnabled = true
+                        binding.tlActivityTable.visibility = View.VISIBLE
+                        binding.pbLoading.visibility = View.GONE
                     }
                 } else {
                     Toast.makeText(applicationContext, "Connection Error!", Toast.LENGTH_SHORT).show()

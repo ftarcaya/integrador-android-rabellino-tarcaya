@@ -2,8 +2,6 @@ package com.example.notbored
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.notbored.databinding.ActivityActivitiesBinding
-import com.example.notbored.databinding.ActivityMainBinding
 import com.example.notbored.databinding.ActivityTermsBinding
 
 class TermsActivity : AppCompatActivity() {
