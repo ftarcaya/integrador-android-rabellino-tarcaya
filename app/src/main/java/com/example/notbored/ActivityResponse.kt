@@ -9,4 +9,6 @@ data class ActivityResponse (
     @SerializedName("accessibility") val accessibility: String,
     @SerializedName("participants") val participants: String,
     @SerializedName("key") val key: String,
+    @SerializedName("error") val error: String,
+
 )

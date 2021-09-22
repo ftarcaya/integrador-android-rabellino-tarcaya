@@ -53,25 +53,40 @@ class SummaryActivity : AppCompatActivity() {
                 getUrlForRequest()
             )
 
+            Log.i("I/O", "PASE POR ACA")
+
             val activity : ActivityResponse? = call.body()
+
+            Log.i("O/I","Body $activity")
 
             runOnUiThread {
                 if(call.isSuccessful) {
 
-                    binding.tvActivity.text = activity?.name
+                    activity?.error?.let {
+                        Toast.makeText(applicationContext, activity.error, Toast.LENGTH_SHORT)
+                            .show()
+                        Log.e("E", activity.error)
+                        finish()
+                    } ?: run {
+                        binding.tvParticipantsCell2.text = activity?.participants
 
-                    binding.tvPriceCell2.text = activity?.let {
-                        when(it.price.toFloat()) {
-                            0F -> EnumActivity.FREE.description
-                            in 0F..0.3F -> EnumActivity.LOW.description
-                            in 0.3F..0.6F -> EnumActivity.MEDIUM.description
-                            else -> EnumActivity.HIGH.description
+                        binding.tvActivity.text = activity?.name
+
+                        binding.tvPriceCell2.text = activity?.let {
+                            when(it.price.toFloat()) {
+                                0F -> EnumActivity.FREE.description
+                                in 0F..0.3F -> EnumActivity.LOW.description
+                                in 0.3F..0.6F -> EnumActivity.MEDIUM.description
+                                else -> EnumActivity.HIGH.description
+                            }
                         }
-                    }
 
-                    binding.tvCategory.text = activity?.category
+                        binding.tvCategory.text = activity?.category?.capitalize()
+                    }
                 } else {
+                    Toast.makeText(applicationContext, "Connection Error!", Toast.LENGTH_SHORT).show()
                     Log.e("E","Error en call, Error Code ${call.code()}")
+                    finish()
                 }
             }
         }
@@ -84,13 +99,23 @@ class SummaryActivity : AppCompatActivity() {
             request = "$request/"
         } else {
             request = "$request?"
-            //minaccessibility=:minaccessibility&maxaccessibility=:maxaccessibility
-            if(participants.isNotEmpty() && price.isNotEmpty()){
-                request = "participants=$participants&price=$price"
-            }else if(participants.isEmpty()){
-                request = "price=$price"
+
+            if(category != "RANDOM") {
+                isNested = true
+                request = "${request}type=${category.lowercase()}"
+            }
+
+            if (participants.isNotEmpty()) {
+                isNested = true
+                request += if (isNested) "&participants=$participants" else "participants=$participants"
+            }
+
+            if (price.isNotEmpty()) {
+                request += if (isNested) "&price=$price" else "price=$price"
             }
         }
+        Log.i("I","Request ${request}")
+
         return request
     }
 
