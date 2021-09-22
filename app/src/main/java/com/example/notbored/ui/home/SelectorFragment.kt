@@ -20,7 +20,7 @@ class SelectorFragment : Fragment() {
         "Education",
         "Recreational",
         "Social",
-        "Diy",
+        "DIY",
         "Charity",
         "Cooking",
         "Relaxation",
