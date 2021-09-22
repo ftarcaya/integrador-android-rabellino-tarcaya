@@ -4,6 +4,7 @@ import com.example.notbored.Adapters.ActivityAdapter
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.notbored.databinding.ActivitySelectorActivitiesBinding
 
@@ -46,5 +47,6 @@ class ActivitiesSelectorActivity : AppCompatActivity() {
     private fun initRV() {
         binding.lvActivities.layoutManager = LinearLayoutManager(this)
         binding.lvActivities.adapter = ActivityAdapter(listActivities,participants,price)
+        binding.lvActivities.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
     }
 }

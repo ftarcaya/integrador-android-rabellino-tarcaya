@@ -29,8 +29,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
-        android:textSize="24sp"
-        android:text="@string/not_bored" />
+        android:text="@string/not_bored"
+        android:textColor="@color/secondary_orange"
+        android:textSize="36sp"
+        android:textStyle="bold"/>
 
     <ScrollView
         android:layout_width="match_parent"
