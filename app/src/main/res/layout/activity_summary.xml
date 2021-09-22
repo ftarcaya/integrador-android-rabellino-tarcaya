@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/teal_200"
+        android:background="@color/primary_blue"
         android:orientation="horizontal">
 
         <com.google.android.material.textview.MaterialTextView
@@ -21,7 +21,7 @@
             android:layout_marginBottom="24dp"
             android:text="@string/activities"
             android:textSize="24sp"
-            android:textColor="@color/secondary_blue"
+            android:textColor="@color/white"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,6 +48,7 @@
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
         android:layout_margin="16dp"
+        android:textColor="@color/primary_blue"
         android:text="Loading..."
         android:textAlignment="center"
         android:textSize="24sp"
@@ -62,9 +63,11 @@
         <ProgressBar
             android:id="@+id/pb_loading"
             style="?android:attr/progressBarStyle"
-            android:indeterminate="true"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/primary_blue" />
 
         <TableLayout
             android:id="@+id/tl_activityTable"
@@ -154,7 +157,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/teal_200"
             android:text="@string/try_another" />
     </LinearLayout>
 
