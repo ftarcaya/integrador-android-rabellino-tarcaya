@@ -10,4 +10,9 @@
     <string name="try_another">Try Another</string>
     <string name="price">Price</string>
     <string name="categoria">Categoria</string>
+    <string name="title_activity_bottom">bottomActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="random">Random</string>
 </resources>

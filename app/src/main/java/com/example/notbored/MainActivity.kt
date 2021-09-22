@@ -55,12 +55,11 @@ class MainActivity : AppCompatActivity() {
             val editor = sharedPref.edit()
 
             editor.putBoolean("TERMS",true)
-
+            editor.putString("PARTICIPANTS",binding.etParticipants.text.toString())
+            editor.putString("PRICE",binding.etPriceSelector.text.toString())
             editor.apply()
 
-            val intent = Intent(this,ActivitiesSelectorActivity::class.java)
-            intent.putExtra("PARTICIPANTS", binding.etParticipants.text)
-            intent.putExtra("PRICE", binding.etPriceSelector.text)
+            val intent = Intent(this,BottomActivity::class.java)
             startActivity(intent)
         }
 
