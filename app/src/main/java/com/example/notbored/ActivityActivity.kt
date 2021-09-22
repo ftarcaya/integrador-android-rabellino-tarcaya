@@ -59,8 +59,14 @@ class ActivityActivity : AppCompatActivity() {
 
                     binding.tvActivity.text = activity?.name
 
-                    //TODO WHEN
-                    binding.tvPriceCell2.text = activity?.price
+                    binding.tvPriceCell2.text = activity?.let {
+                        when(it.price.toFloat()) {
+                            0F -> EnumActivity.FREE.description
+                            in 0F..0.3F -> EnumActivity.LOW.description
+                            in 0.3F..0.6F -> EnumActivity.MEDIUM.description
+                            else -> EnumActivity.HIGH.description
+                        }
+                    }
 
                     binding.tvCategory.text = activity?.category
                 } else {
